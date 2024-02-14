@@ -1,7 +1,7 @@
 const Gameboard = (() => {
     let gameboard = ["", "", "", "", "", "", "", "", ""];
 
-    const render = () => {
+const render = () => {
         let boardHTML = "";
         gameboard.forEach((square, index) => {
             boardHTML += `<div class="square" id="square-${index}">${square}</div>`;
@@ -12,7 +12,7 @@ const Gameboard = (() => {
     return {
         render
     };
-    
+
 })();
 
 const createPlayer = (name, marks) =>{
@@ -38,8 +38,11 @@ const Game = (() => {
         currentPlayerIndex = 0;
         gameOver = false;
         Gameboard.render();
-
     };
+
+    return {
+        start,
+    }
 
 })();
 
