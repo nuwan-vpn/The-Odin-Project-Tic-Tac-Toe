@@ -12,32 +12,35 @@ const Gameboard = (() => {
     return {
         render
     };
+    
 })();
 
+const createPlayer = (name, marks) =>{
+    return{
+        name,
+        marks
+    }
+}
+
 const Game = (() => {
-    let currentPlayer = "X"; // Assume player X starts first
+
+    let players = [];
+    let currentPlayerIndex;
+    let gameOver;
 
     const start = () => {
-        // Reset the gameboard
+
+        players = [
+            createPlayer(document.querySelector("#player1").value,"X"),
+            createPlayer(document.querySelector("#player2").value,"O")
+        ] 
+        
+        currentPlayerIndex = 0;
+        gameOver = false;
         Gameboard.render();
-        // Add event listeners to squares for player moves
-        document.querySelectorAll(".square").forEach((square, index) => {
-            square.addEventListener("click", () => {
-                if (gameboard[index] === "") {
-                    gameboard[index] = currentPlayer;
-                    // Render the updated gameboard
-                    Gameboard.render();
-                    // Check for winner or switch player
-                    if (checkWinner()) {
-                        // Display winner message
-                        document.querySelector("#message").textContent = `${currentPlayer} wins!`;
-                    } else {
-                        switchPlayer();
-                    }
-                }
-            });
-        });
+
     };
+
 })();
 
 const btnStart = document.querySelector("#start-game");
