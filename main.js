@@ -48,11 +48,19 @@ const Game = (() => {
         currentPlayerIndex = 0;
         gameOver = false;
         Gameboard.render();
+        const squares = document.querySelectorAll(".square");
+        squares.forEach((square) =>{
+            square.addEventListener("click", handleClick);
+        });
+
     };
 
     const handleClick = (event) => {
         let index = parseInt(event.target.id.split("-")[1]);
         Gameboard.update(index, players[currentPlayerIndex].marks);
+
+        currentPlayerIndex = (currentPlayerIndex + 1) % 2;
+        // currentPlayerIndex = currentPlayerIndex === 'O' ? 1 : 0;
     }
 
     return {
