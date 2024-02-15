@@ -1,7 +1,7 @@
 const Gameboard = (() => {
     let gameboard = ["", "", "", "", "", "", "", "", ""];
 
-const render = () => {
+    const render = () => {
         let boardHTML = "";
         gameboard.forEach((square, index) => {
             boardHTML += `<div class="square" id="square-${index}">${square}</div>`;
@@ -12,6 +12,10 @@ const render = () => {
             square.addEventListener("click", Game.handleClick);
         });
     };
+
+    const update = (index, value) =>{
+        gameboard[index] = value;
+    }
 
     return {
         render
@@ -45,8 +49,8 @@ const Game = (() => {
     };
 
     const handleClick = (event) => {
-        let index = event.target.id.split("-")[1];
-        console.log(index);
+        let index = parseInt(event.target.id.split("-")[1]);
+        Game.update(index, players[currentPlayerIndex].marks);
     }
 
     return {
