@@ -15,10 +15,12 @@ const Gameboard = (() => {
 
     const update = (index, value) =>{
         gameboard[index] = value;
+        render();
     }
 
     return {
-        render
+        render,
+        update
     };
 
 })();
@@ -50,7 +52,7 @@ const Game = (() => {
 
     const handleClick = (event) => {
         let index = parseInt(event.target.id.split("-")[1]);
-        Game.update(index, players[currentPlayerIndex].marks);
+        Gameboard.update(index, players[currentPlayerIndex].marks);
     }
 
     return {
