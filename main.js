@@ -18,9 +18,12 @@ const Gameboard = (() => {
         render();
     }
 
+    const getGameboard = () => gameboard;
+
     return {
         render,
-        update
+        update,
+        getGameboard
     };
 
 })();
@@ -57,6 +60,12 @@ const Game = (() => {
 
     const handleClick = (event) => {
         let index = parseInt(event.target.id.split("-")[1]);
+       
+
+        if(Gameboard.getGameboard()[index] != ""){
+            return;
+        }
+
         Gameboard.update(index, players[currentPlayerIndex].marks);
 
         currentPlayerIndex = (currentPlayerIndex + 1) % 2;
