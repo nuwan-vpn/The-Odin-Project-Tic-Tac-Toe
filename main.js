@@ -1,3 +1,14 @@
+const displayController = (() =>{
+    const renderMessage = (message) =>{
+        document.querySelector("#message").innerHTML = message;
+    }
+
+    return{
+        renderMessage,
+    }
+})();
+
+
 const Gameboard = (() => {
     let gameboard = ["", "", "", "", "", "", "", "", ""];
 
@@ -69,10 +80,12 @@ const Game = (() => {
 
         if(checkForWin(Gameboard.getGameboard(),players[currentPlayerIndex].marks)){
             gameOver = true;
-            alert(`${players[currentPlayerIndex].name} won!`);
+            // alert(`${players[currentPlayerIndex].name} won!`);
+            displayController.renderMessage(`${players[currentPlayerIndex].name} won!`);
         } else if (checkForTie(Gameboard.getGameboard())){
             gameOver = true;
-            alert(`It's a tie.`);
+            // alert(`It's a tie.`);
+            displayController.renderMessage(`It's a tie.`);
         }
 
         currentPlayerIndex = (currentPlayerIndex + 1) % 2;
