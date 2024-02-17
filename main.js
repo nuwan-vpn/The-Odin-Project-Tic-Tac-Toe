@@ -98,6 +98,8 @@ const Game = (() => {
         }
 
         Gameboard.render();
+        gameOver = false;
+        document.querySelector("#message").innerHTML = "";
     }
 
     return {
